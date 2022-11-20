@@ -60,8 +60,9 @@ const selectGeneration = () => {
     divElement.append(button);
     button.addEventListener('click', () => {
         const generation = prompt('Which generation do you want to discover ?');
-        if(generation === null){
-            alert('Please choose a generation');
+        if(generation <= 0 || generation >= 9) {
+            alert('Please choose a generation between 1 and 8');
+
         }else{
             getPokemons(generation) - document.querySelector('ul').remove();
         }
@@ -88,28 +89,4 @@ const selectLanguage = () => {
             });
         });
 };
-
 selectLanguage();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
