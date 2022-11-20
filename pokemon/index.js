@@ -13,7 +13,6 @@ function getPokemons (number, lang = 'fr') {
             pokemons.push({
                 id: pokemon.url.split('/')[6],
                 name: pokemon.name,
-                url: pokemon.url
             });
         });
         pokemons.sort((a, b) => a.id - b.id);
