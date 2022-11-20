@@ -1,0 +1,136 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    display: flex;
+}
+
+h1 {
+    font-weight: bold;
+    font-size: 2rem;
+    margin: 30px;
+}
+
+.container {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+ul {
+    width: 50%;
+    height: 100%;
+    overflow: scroll;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: red;
+}
+
+li {
+    width: 20%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    cursor: pointer;
+    flex-direction: column;
+}
+
+img {
+    transition: 0.3s ease-in-out;
+}
+
+li:hover>img {
+    transform: scale(1.14);
+}
+
+li:first-child {
+    background-color: #fbcc00 ;
+    border: 6px solid #395ba7;
+    font-weight: bold;
+}
+
+input {
+    width: 70%;
+    outline: none;
+    border: #395ba7 6px solid;
+}
+
+button {
+    margin: 30px;
+    padding: 10px;
+    border: 6px solid #395ba7;
+    border-radius: 5px;
+    background-color: #fbcc00;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    flex-direction: column;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+button:hover {
+    background-color: #395ba7;
+    color: #fbcc00;
+}
+
+button::after {
+    content: "* choose between 1 and 8";
+    margin-left: 10px;
+    font-size: 0.7rem;
+}
+
+.container>p {
+    margin: 5px;
+}
+
+.container>input {
+    margin: 5px;
+    padding: 10px;
+}
+
+/* Custom scrollbar */
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #395ba7;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #fbcc00;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.error {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    background-color: red;
+    height: 100%;
+    width: 50%;
+    font-size: 1.5rem;
+    font-weight: bold;
+}

@@ -1,0 +1,91 @@
+/**
+* - Donner à chaque `<div />` une `font-size` et une `font-weight` aléatoires, en utilisant des classes CSS prédéfinies
+**/
+
+body {
+    height: 100vh;
+    width: 100vw;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    color: white;
+    font-family: arial black;
+    background-image: url('./matrix.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+#overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+p {
+    margin: 10px;
+    font-size: 3rem;
+    z-index: 999;
+}
+
+input {
+    margin: 10px;
+    padding: 10px;
+    width: 250px;
+    outline: none;
+    transition: 0.3s ease-in-out;
+    z-index: 999;
+}
+
+button {
+    margin: 10px;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    padding: 15px;
+    width: 250px;
+    transition: 0.3s ease-in-out;
+    cursor: pointer;
+    z-index: 999;
+}
+
+button:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+section {
+    height: 70px;
+    z-index: 999;
+}
+
+
+.alea1 {
+    font-size: 1.5em;
+    font-weight: 400;
+}
+
+.alea2 {
+    font-size: 1.5em;
+    font-weight: 700;
+}
+
+.alea3 {
+    font-size: 2em;
+    font-weight: 400;
+}
+
+.alea4 {
+    font-size: 4em;
+    font-weight: 700;
+}
+
+.message {
+    display: flex;
+}
