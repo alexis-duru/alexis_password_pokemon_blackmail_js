@@ -1,8 +1,6 @@
 'use strict';
 const divElement = document.querySelector('.container');
 
-// const langUrl = `https://pokeapi.co/api/v2/language/${lang}/`;
-
 function getPokemons (number, lang = 'fr') {
     const pokemons = [];
     const url = `https://pokeapi.co/api/v2/generation/${number}/`;
@@ -70,6 +68,28 @@ const selectGeneration = () => {
     });
 }
 selectGeneration();
+
+const selectLanguage = () => {
+    const selectElement = document.createElement('select');
+    divElement.appendChild(selectElement);
+    const langUrl = `https://pokeapi.co/api/v2/language/`;
+    fetch(langUrl)
+        .then(response => response.json())
+        .then(data => {
+            data.results.forEach(element => {
+                const optionElement = document.createElement('option');
+                optionElement.value = element.name;
+                optionElement.textContent = element.name;
+                selectElement.appendChild(optionElement);
+                if (optionElement.value === 'fr') {
+                    optionElement.setAttribute('selected', '');
+                }
+
+            });
+        });
+};
+
+selectLanguage();
 
 
 
