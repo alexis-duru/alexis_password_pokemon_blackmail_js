@@ -30,11 +30,15 @@ const makePassword = (options) => {
     }
     return password;
 }
+
 console.log(makePassword({
     size: 10,
     withNumbers: false
 }));
+
 console.log(makePassword({
     size: 5,
     withNumbers: true
 }));
+
+
