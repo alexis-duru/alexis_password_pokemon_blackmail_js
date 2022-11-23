@@ -32,7 +32,7 @@ h1 {
 
 ul {
     width: 50%;
-    height: 100%;
+    height: 102vh;
     overflow: scroll;
     display: flex;
     flex-wrap: wrap;

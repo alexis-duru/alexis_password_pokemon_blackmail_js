@@ -4,10 +4,10 @@ const divElement = document.querySelector('.container');
 function getPokemons (number, lang) {
     const pokemons = [];
     const url = `https://pokeapi.co/api/v2/generation/${number}/`;
-    // const langName = `https://pokeapi.co/api/v2/pokemon-species/${number}/`;
     fetch(url)
     .then(response => response.json())
     .then(data => {
+       console.log(data.names)
         data.pokemon_species.forEach(pokemon => {
             pokemons.push({
                 id: pokemon.url.split('/')[6],
@@ -15,7 +15,6 @@ function getPokemons (number, lang) {
             });
         });
         pokemons.sort((a, b) => a.id - b.id);
-        console.log(pokemons);
         const ul = document.createElement('ul');
         document.body.append(ul);
         const li = document.createElement('li');
@@ -31,7 +30,7 @@ function getPokemons (number, lang) {
         });
     });
 }
-getPokemons(1, 'fr');
+getPokemons(2, 'fr');
 
 const researchPokemon = () => {
     const title = document.createElement('h1');
@@ -63,7 +62,6 @@ const selectGeneration = () => {
         const generation = prompt('Which generation do you want to discover ?');
         if(generation <= 0 || generation >= 9) {
             alert('Please choose a generation between 1 and 8');
-
         }else{
             getPokemons(generation) - document.querySelector('ul').remove();
         }
@@ -71,23 +69,3 @@ const selectGeneration = () => {
 }
 selectGeneration();
 
-// const selectLanguage = () => {
-//     const selectElement = document.createElement('select');
-//     divElement.appendChild(selectElement);
-//     const langUrl = `https://pokeapi.co/api/v2/language/`;
-//     fetch(langUrl)
-//         .then(response => response.json())
-//         .then(data => {
-//             data.results.forEach(element => {
-//                 const optionElement = document.createElement('option');
-//                 optionElement.value = element.name;
-//                 optionElement.textContent = element.name;
-//                 selectElement.appendChild(optionElement);
-//                 if (optionElement.value === 'fr') {
-//                     optionElement.setAttribute('selected', '');
-//                 }
-
-//             });
-//         });
-// };
-// selectLanguage();
