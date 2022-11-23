@@ -1,36 +1,66 @@
 'use strict';
 const divElement = document.querySelector('.container');
 
-function getPokemons (number, lang) {
+function getPokemons(number, lang) {
+
     const pokemons = [];
     const url = `https://pokeapi.co/api/v2/generation/${number}/`;
     fetch(url)
-    .then(response => response.json())
-    .then(data => {
-       console.log(data.names)
-        data.pokemon_species.forEach(pokemon => {
-            pokemons.push({
-                id: pokemon.url.split('/')[6],
-                name: pokemon.name,
+        .then(response => response.json())
+        .then(data => {
+            data.pokemon_species.forEach(pokemon => {
+                pokemons.push({
+                    id: pokemon.url.split('/')[6],
+                    name: pokemon.name,
+                    url: pokemon.url
+                });
+            });
+            pokemons.sort((a, b) => a.id - b.id);
+            const ul = document.createElement('ul');
+            document.body.append(ul);
+            const li = document.createElement('li');
+            ul.append(li);
+            li.innerHTML = `Génération ${number}`;
+            pokemons.forEach(pokemon => {
+                fetch(pokemon.url).then(response => response.json()).then(data => {
+                    data.names.forEach(e => {
+                        if (lang === e.language.name) {
+                            const li = document.createElement('li');
+                            li.textContent = `${pokemon.id} - ${e.name}`;
+                            ul.append(li);
+                            const img = document.createElement('img');
+                            img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`;
+                            li.append(img);
+                        }
+                        // if (lang === '' || lang === undefined) {
+                        //     console.log('test');
+                        // }
+                    
+                    });
+                })
             });
         });
-        pokemons.sort((a, b) => a.id - b.id);
-        const ul = document.createElement('ul');
-        document.body.append(ul);
-        const li = document.createElement('li');
-        ul.append(li);
-        li.innerHTML = `Génération ${number}`;
-        pokemons.forEach(pokemon => {
-            const li = document.createElement('li');
-            li.textContent = `${pokemon.id} - ${pokemon.name}`;
-            ul.append(li);
-            const img = document.createElement('img');
-            img.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`;
-            li.append(img);
+
+        const select = document.createElement('select');
+        const div = document.querySelector('.container');
+        div.append(select);
+        const option = document.createElement('option');
+        option.textContent = 'Génération';
+        select.append(option);
+        for (let i = 1; i <= 8; i++) {
+            const option = document.createElement('option');
+            option.textContent = `Génération ${i}`;
+            select.append(option);
+        }
+        select.addEventListener('change', (e) => {
+            const ul = document.querySelector('ul');
+            ul.remove();
+            const select = document.querySelector('select');
+            select.remove();
+            getPokemons(e.target.value[11], lang);
         });
-    });
 }
-getPokemons(2, 'fr');
+getPokemons(1, 'fr');
 
 const researchPokemon = () => {
     const title = document.createElement('h1');
@@ -53,19 +83,3 @@ const researchPokemon = () => {
     });
 }
 researchPokemon();
-
-const selectGeneration = () => {
-    const button = document.createElement('button');
-    button.textContent = 'Choose the generation of pokemons';
-    divElement.append(button);
-    button.addEventListener('click', () => {
-        const generation = prompt('Which generation do you want to discover ?');
-        if(generation <= 0 || generation >= 9) {
-            alert('Please choose a generation between 1 and 8');
-        }else{
-            getPokemons(generation) - document.querySelector('ul').remove();
-        }
-    });
-}
-selectGeneration();
-

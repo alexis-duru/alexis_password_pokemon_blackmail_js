@@ -70,7 +70,7 @@ input {
     border: #395ba7 6px solid;
 }
 
-button {
+select {
     margin: 30px;
     padding: 10px;
     border: 6px solid #395ba7;
@@ -83,14 +83,21 @@ button {
     text-align: center;
     justify-content: center;
     align-items: center;
+    max-width: 250px;
+    position: absolute;
+    bottom: 20%;
 }
 
-button:hover {
+option {
+    font-family: 'Helvetica';
+}
+
+select:hover {
     background-color: #395ba7;
     color: #fbcc00;
 }
 
-button::after {
+select::after {
     content: "* choose between 1 and 8";
     margin-left: 10px;
     font-size: 0.7rem;
